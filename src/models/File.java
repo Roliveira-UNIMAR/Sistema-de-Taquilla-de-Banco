@@ -19,65 +19,65 @@ public class File {
      *
      * @return La cola de clientes que estan esperando pasar a taquilla
      */
-    public static Queue<Cliente> colaClientes() {
-        Queue<Cliente> clientes = new Queue();
-        Cliente tempCliente = new Cliente();
-        FileRearder fileClientes = new FileReader("src\\models\\Clientes.txt");
-        FileRearder fileClientesPendientes = new FileReader("src\\models\\clientes_pendientes.txt");
+    public static Queue<Cliente> queueClients() {
+        Queue<Cliente> clients = new Queue();
+        Cliente tempClient = new Cliente();
+        FileRearder fileClients = new FileReader("src\\models\\Clientes.txt");
+        FileRearder fileClientsSlopes = new FileReader("src\\models\\Clientes_pendientes.txt");
         BufferedReader br;
-        String nombre, apellido, ci;
-        nombre = apellido = ci = null;
-        if (fileClientesPendientes.exists()) {
+        String name, surname, ci;
+        name = surname = ci = null;
+        if (fileClientsSlopes.exists()) {
             try {
-                br = new BufferedReader(fileClientesPendientes );
+                br = new BufferedReader(fileClientsSlopes);
                 while ((line = br.readLine()) != null) {
                     String[] separator = line.split("::");
-                    nombre = separator[0];
-                    apellido = separator[1];
+                    name = separator[0];
+                    surname = separator[1];
                     ci = separator[2];
-                    tempCliente = new Cliente(nombre, apellido, ci);
-                    clientes.enqueue(tempCliente);
+                    tempClient = new Client(name, surname, ci);
+                    clients.enqueue(tempClient);
                 }
             } catch (IOException ioe) {
                 Mostrar.error("El archivo \"clientes_pendientes.txt\" no se puede leer.");
             }
-            fileClientesPendientes.delete();
+            fileClientsSlopes.delete();
         }
-        br = new BufferedReader(fileClientes);
+        br = new BufferedReader(fileClients);
         try {
             while ((line = br.readLine()) != null) {
                 String[] separator = line.split("::");
-                nombre = separator[0];
-                apellido = separator[1];
+                name = separator[0];
+                surname = separator[1];
                 ci = separator[2];
-                tempCliente = new Cliente(nombre, apellido, ci);
-                clientes.enqueue(tempCliente);
+                tempClient = new Cliente(name, surname, ci);
+                clients.enqueue(tempClient);
             }
         } catch (FileNotFoundException fnfe) {
             Mostrar.error("El archivo \"Clientes.txt\" no encontrado.");
         } catch (IOException ioe) {
             Mostrar.error("El archivo \"Clientes.txt\" no se puede leer.");
         }
-        return clientes;
+        return clients;
     }
     
      /**
      *
      * Metodo que guarda la cola de clientes en un archivo .txt
      *
-     * @param pendientes Los clientes que quedaron haciendo cola
+     * @param slopes Los clientes que quedaron haciendo cola
      */
-    public static void clientesPendientes(Queue<Cliente> pendientes) {
+    public static void clientsSlopes(Queue<Cliente> slopes) {
         FileWriter file = null;
         BufferedWriter bw = null;
-        if (pendientes.isEmpty()) {
+        if (slopes.isEmpty()) {
             return;
         } else {
             try {
-                Cliente tempCliente = pendientes.dequeue();
+                Cliente tempClient = slopes.dequeue();
                 file = new FileWriter("clientes_pendientes.txt", true);
                 bw = new BufferedWriter(file);
-                bw.write(tempCliente.getNombre() + "::" + tempCliente.getApellido() + "::" + tempCliente.getCI());
+                bw.write(tempClient.getname() + "::" + tempClient.getsurname() + "::" + tempClient.getCI());
                 bw.newLine();
                 bw.flush();
             } catch (FileNotFoundException fnfe) {
@@ -94,7 +94,7 @@ public class File {
                     } 
                 } catch (IOException ioe) { }
             }
-            clientesPendientes(pendientes);
+            clientsSlopes(slopes);
         }
     }
 }
