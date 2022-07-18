@@ -16,6 +16,8 @@ public class File {
     /**
      *
      * Metodo que hace la cola de clientes a traves de archivos .txt
+     *
+     * @return La cola de clientes que estan esperando pasar a taquilla
      */
     public static Queue<Cliente> colaClientes() {
         Queue<Cliente> clientes = new Queue();
