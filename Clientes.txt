@@ -1,0 +1,10 @@
+Jose::Lopez::12.345.678
+Marea::Mracano::9.101.112
+Luis::Salazar::13.141.516
+Carmen::Teran::17.181.920
+Carlos::Heranadez::21.222.324
+Ana::Garcia::25.262.728
+Juan::Malaver::29.303.132
+Guillermo::Moreno::6.343.536
+Hilda::Reyes::10.383.940
+Doris::Velasquez::5.424.344
