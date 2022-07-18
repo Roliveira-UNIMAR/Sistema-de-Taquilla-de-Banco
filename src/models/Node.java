@@ -1,3 +1,5 @@
+package models;
+
 /**
  * 
  * @author Rodrigo Oliveira - 29.655.609
