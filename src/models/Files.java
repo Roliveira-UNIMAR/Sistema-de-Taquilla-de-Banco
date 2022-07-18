@@ -19,7 +19,7 @@ public class Files {
      *
      * @return La cola de clientes que estan esperando pasar a taquilla
      */
-    public static Queue<Client> queueClients() throws FileNotFoundException {
+    public static Queue<Client> queueClients() {
         Queue<Client> clients = new Queue();
         Client tempClient = new Client();
         File fileClients = new File("src\\models\\Clientes.txt");
