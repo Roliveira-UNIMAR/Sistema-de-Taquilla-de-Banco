@@ -9,9 +9,12 @@ public class Display {
     
     public static void menuTicketOffice(String nameClient) {
         System.out.println("\n\t***** Bienvenido " + nameClient + "*****\n");
-        System.out.println("\t1. Agregar helado (Max 3)");
-        System.out.println("\t2. Agregar topping (Max 2)");
-        System.out.println("\t3. Terminar  (termina la compra)");
+        System.out.println("\t1. Retiro");
+        System.out.println("\t2. Deposito");
+        System.out.println("\t3. Consulta de Movimientos");
+        System.out.println("\t4. Actualización de Libretas");
+        System.out.println("\t5. pago de servicios)");
+        
     }
     
     public static void error(String msj) {
