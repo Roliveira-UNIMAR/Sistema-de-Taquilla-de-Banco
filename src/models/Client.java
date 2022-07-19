@@ -8,17 +8,20 @@ public class Client {
     private String name;
     private String surname;
     private String ci;
+    private double balance;
     
     public Client() {
         this.name = null;
         this.surname = null;
         this.ci = null;
+        this.balance = 0.0;
     }
     
-    public Client(String n, String sn, String ci) {
+    public Client(String n, String sn, String ci, double balance) {
         this.name = n;
         this.surname = sn;
         this.ci = ci;
+        this.balance = balance;
     }
     
     public String getName() {
@@ -31,5 +34,22 @@ public class Client {
     
     public String getCI() {
         return this.ci;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+    
+    public boolean withdrawal(double amount) {
+        if (this.balance >= amount) {
+            this.balance -= (double) amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public void Deposit(double amount) {
+        this.balance += (double) amount; 
     }
 }
