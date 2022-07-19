@@ -41,11 +41,11 @@ public class Client {
     }
     
     public boolean withdrawal(double amount) {
-        if (this.balance >= amount) {
+        if (this.balance < amount) {
+            return false;
+        } else {
             this.balance -= (double) amount;
             return true;
-        } else {
-            return false;
         }
     }
     
