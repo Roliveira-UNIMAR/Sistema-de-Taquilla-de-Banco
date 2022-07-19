@@ -33,4 +33,20 @@ public class Input {
         }
         return op;
     }
+    
+    public static double amount(String msj) {
+        double amount = 0.0;
+        boolean successful = false;
+        do {
+            try {
+                System.out.print("\n\t" + msj);
+                String amountS = sc.next();
+                amount = Double.parseDouble(amountS);
+                successful = true;
+            } catch(NumberFormatException nfe) {
+               Display.error("La opcion debe ser un numero");
+            }
+        } while (!successful);
+        return amount;
+    }
 }
