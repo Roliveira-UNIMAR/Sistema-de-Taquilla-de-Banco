@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -29,6 +30,7 @@ public class Files {
         name = null;
         surname = null;
         ci = null;
+        double balance;
         String line;
         if (fileClientsSlopes.exists()) {
             try {
@@ -39,7 +41,8 @@ public class Files {
                     name = separator[0];
                     surname = separator[1];
                     ci = separator[2];
-                    tempClient = new Client(name, surname, ci);
+                    balance = Double.parseDouble(separator[3]);
+                    tempClient = new Client(name, surname, ci, balance);
                     clients.enqueue(tempClient);
                 }
             } catch (IOException ioe) {
@@ -55,7 +58,8 @@ public class Files {
                 name = separator[0];
                 surname = separator[1];
                 ci = separator[2];
-                tempClient = new Client(name, surname, ci);
+                balance = Double.parseDouble(separator[3]);
+                tempClient = new Client(name, surname, ci, balance);
                 clients.enqueue(tempClient);
             }
         } catch (FileNotFoundException fnfe) {
@@ -100,6 +104,47 @@ public class Files {
                 } catch (IOException ioe) { }
             }
             clientsSlopes(slopes);
+            return;
+        }
+    }
+
+    public static void saveOperations(Stack<Transaction> operations) {
+        File oldFile = new File("Taquilla.log");
+        if (oldFile.exists()) {
+            LocalDate date = LocalDate. now();
+            int day = date.getDayOfMonth();
+            int month = date.getMonthValue();
+            int year = date.getYear();
+            File newfile = new File("taquilla" + day + "-" + month + "-" + year);
+            oldFile.renameTo(newfile);
+        }
+        FileWriter file = null;
+        BufferedWriter bw = null;
+        try {
+            while (!operations.isEmpty()) {
+                Transaction tempTransaction = operations.pop();
+                file = new FileWriter("Taquilla.log", true);
+                bw = new BufferedWriter(file);
+                bw.write(tempTransaction.getName() + ".");
+                if (tempTransaction.isWithAmount()) {
+                    bw.write(" CANTIDAD: " + tempTransaction.getAmount());
+                }   
+                bw.newLine();
+                bw.flush();
+            }
+        } catch (FileNotFoundException fnfe) {
+            Display.error("El archivo \"Taquilla.log\" no encontrado.");
+        } catch (IOException ioe) {
+            Display.error("El archivo \"Taquilla.log\" no se puede leer.");
+        } finally {
+            try {
+                if(bw != null) { 
+                    bw.close();
+                }
+                if(file != null) { 
+                    file.close();
+                } 
+            } catch (IOException ioe) { }
         }
     }
 }
