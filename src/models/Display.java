@@ -13,7 +13,7 @@ public class Display {
     }
     
     public static void menuTicketOffice(String nameClient) {
-        System.out.println("\n\t***** Bienvenido " + nameClient + "*****\n");
+        System.out.println("\n\n\t***** Bienvenido " + nameClient + " *****\n");
         System.out.println("\t1. Retiro");
         System.out.println("\t2. Deposito");
         System.out.println("\t3. Consulta de Movimientos");
@@ -33,7 +33,7 @@ public class Display {
     
     public static void withQueue() {
         System.out.println("\n\tHay clientes en cola");
-        System.out.println("\tPor favor, atiende a los clientes antes de hacer imprimir las transacciones");
+        System.out.println("\tPor favor, atiende a los clientes antes de imprimir las transacciones");
     }
     
     public static void exitSystem() {
@@ -55,19 +55,19 @@ public class Display {
     public static void waitClient(int wait) {
         System.out.print("\n\tEspere mientras se realiza su operacion: ");
         for (int i = 1; i <= wait; i++) {
-            System.out.print(i + " minutos");
             try {
-                Thread.sleep(10000); // Duerme el hilo durante 10000 milisegundos, 10 segundo pues
+                Thread.sleep(1000); // Duerme el hilo durante 10000 milisegundos, 10 segundo pues
             } catch(InterruptedException ie) {}
+            System.out.print(i + " minutos ");
         }
     }
     
     public static void waitClient(int wait, int sec) {
         waitClient(wait);
         try {
-            Thread.sleep(5000); 
+            Thread.sleep(500); 
         } catch(InterruptedException ie) {}
-        System.out.print( wait + "." + sec + " minutos");  
+        System.out.print(wait + "." + sec + " minutos");  
     }
 
     public static void paymentServices() {
