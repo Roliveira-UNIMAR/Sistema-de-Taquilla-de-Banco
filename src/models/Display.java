@@ -18,8 +18,8 @@ public class Display {
         System.out.println("\t2. Deposito");
         System.out.println("\t3. Consulta de Movimientos");
         System.out.println("\t4. Actualización de Libretas");
-        System.out.println("\t5. pago de servicios)");
-        
+        System.out.println("\t5. pago de servicios");
+        System.out.println("\t6. Terminar operaciones");
     }
     
     public static void error(String msj) {
@@ -46,6 +46,35 @@ public class Display {
                 // ignorar
             }
         }
+    }
+
+    public static void text(String text) {
+        System.out.print("\n\t" + text);
+    }
+
+    public static void waitClient(int wait) {
+        System.out.print("\n\tEspere mientras se realiza su operacion: ");
+        for (int i = 1; i <= wait; i++) {
+            System.out.print(i + " minutos");
+            try {
+                Thread.sleep(10000); // Duerme el hilo durante 10000 milisegundos, 10 segundo pues
+            } catch(InterruptedException ie) {}
+        }
+    }
+    
+    public static void waitClient(int wait, int sec) {
+        waitClient(wait);
+        try {
+            Thread.sleep(5000); 
+        } catch(InterruptedException ie) {}
+        System.out.print( wait + "." + sec + " minutos");  
+    }
+
+    public static void paymentServices() {
+        System.out.println("\n\t1. Luz");
+        System.out.println("\t2. Agua");
+        System.out.println("\t3. Telefonia Movil");
+        System.out.println("\t4. Internet"); 
     }
     
 }
