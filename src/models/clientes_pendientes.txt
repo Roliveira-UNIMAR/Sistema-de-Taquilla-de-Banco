@@ -1,4 +1,4 @@
-Rodrigo::Oliveira::29.655.609
-Leticia::Gonzalez::30.800.900
-Jorge::Gonzalez::11.873.876
-Angelica::Guerra::24.695.577
+Rodrigo::Oliveira::29.655.609::296.5
+Leticia::Gonzalez::30.800.900::308.0
+Jorge::Gonzalez::11.873.876::118.7
+Angelica::Guerra::24.695.577::246.9
