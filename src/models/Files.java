@@ -112,9 +112,10 @@ public class Files {
         File oldFile = new File("Taquilla.log");
         if (oldFile.exists()) {
             LocalDate date = LocalDate. now();
-            int day = date.getDayOfMonth();
-            int month = date.getMonthValue();
-            int year = date.getYear();
+            LocalDate previous = date.minusDays(1);
+            int day = previous.getDayOfMonth();
+            int month = previous.getMonthValue();
+            int year = previous.getYear();
             File newfile = new File("taquilla" + day + "-" + month + "-" + year);
             oldFile.renameTo(newfile);
         }
